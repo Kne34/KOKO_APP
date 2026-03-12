@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:koko_app/apis/api.dart';
 import 'package:koko_app/pages/homepage.dart';
 import 'package:koko_app/pages/registerpage.dart';
-import 'package:koko_app/apis/api.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   final Function(bool) koTheme;
@@ -57,6 +58,11 @@ class _LoginPageState extends State<LoginPage> {
       if (!mounted) return;
 
       if (success) {
+        final prefs = await SharedPreferences.getInstance();
+        final theme = prefs.getString('theme') ?? 'light';
+        widget.koTheme(theme == 'dark');
+
+        if (!mounted) return;
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => HomePage(koTheme: widget.koTheme)),

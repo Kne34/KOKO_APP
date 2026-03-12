@@ -3,12 +3,16 @@ import 'package:koko_app/apis/api.dart';
 import 'package:koko_app/pages/loginpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final theme = prefs.getString('theme') ?? 'light';
+  runApp(MyApp(savedTheme: theme));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  final String savedTheme;
+  const MyApp({super.key, required this.savedTheme});
 
   // This widget is the root of your application.
   @override
@@ -21,15 +25,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final prefs = await SharedPreferences.getInstance();
-    final themes = prefs.getString('theme') ?? 'light';
-    setState(() {
-      _themeMode = (themes == 'dark') ? ThemeMode.dark : ThemeMode.light;
-    });
+    _themeMode = widget.savedTheme == 'dark' ? ThemeMode.dark : ThemeMode.light;
   }
 
   void toggleTheme(bool isDark) {

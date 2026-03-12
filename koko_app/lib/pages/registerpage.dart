@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:koko_app/apis/api.dart';
 import 'package:koko_app/pages/loginpage.dart';
+import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function(bool) koTheme;

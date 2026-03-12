@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:koko_app/pages/itempage.dart';
 import 'package:koko_app/pages/loginpage.dart';
+import 'package:koko_app/pages/profilepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:koko_app/apis/api.dart';
 
@@ -157,11 +158,11 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag_outlined),
-            label: 'Produk',
+            label: 'Products',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-            label: 'Profil',
+            label: 'Profile',
           ),
         ],
       ),
@@ -170,7 +171,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           _buildHomeBody(isDark, cardColor, textColor, subTextColor),
           const ItemPage(),
-          const Center(child: Text('Profil')),
+          ProfilePage(koTheme: widget.koTheme),
         ],
       ),
     );

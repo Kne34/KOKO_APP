@@ -77,6 +77,7 @@ class _DetailPageState extends State<DetailPage>
         _commentCtrl.clear();
         setState(() => _rating = 5);
         await _fetchReviews();
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Review berhasil ditambahkan!'),
@@ -165,7 +166,7 @@ class _DetailPageState extends State<DetailPage>
             width: double.infinity,
             height: 250,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => Container(
+            errorBuilder: (_, _, _) => Container(
               height: 250,
               color: const Color(0xFF8B4513).withValues(alpha: 0.2),
               child: const Icon(
@@ -208,8 +209,8 @@ class _DetailPageState extends State<DetailPage>
                       ),
                       child: Text(
                         product['category'] ?? '-',
-                        style: const TextStyle(
-                          color: Color(0xFF8B4513),
+                        style: TextStyle(
+                          color: isDark ? Colors.white : Color(0xFF8B4513),
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),

@@ -19,6 +19,7 @@ Future<(bool, String)> login(String email, password) async {
     prefs.setString("token", data['data']['token']);
     prefs.setString("username", data['data']['username']);
     prefs.setString('theme', data['data']['theme']);
+    prefs.setString('email', data['data']['email']);
     prefs.setInt('userId', data['data']['id']);
     return (true, data["message"].toString());
   }

@@ -148,7 +148,7 @@ class _ItemPageState extends State<ItemPage> {
                                 child: Image.network(
                                   product!['image'],
                                   fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) => const Icon(
+                                  errorBuilder: (_, _, _) => const Icon(
                                     Icons.add_photo_alternate,
                                     color: Color(0xFF8B4513),
                                     size: 40,
@@ -369,17 +369,6 @@ class _ItemPageState extends State<ItemPage> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: AppBar(
-        backgroundColor: isDark
-            ? const Color(0xFF2C1A12)
-            : const Color(0xFF4B2C20),
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        title: const Text(
-          'Produk Kami',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
       floatingActionButton: _isAdmin
           ? FloatingActionButton(
               backgroundColor: const Color(0xFF8B4513),
