@@ -160,7 +160,6 @@ class _DetailPageState extends State<DetailPage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Gambar ──
           Image.network(
             product['image'] ?? '',
             width: double.infinity,

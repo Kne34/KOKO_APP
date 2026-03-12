@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS products (
   id          INT AUTO_INCREMENT PRIMARY KEY,
   name        VARCHAR(100)  NOT NULL,
   description TEXT          NOT NULL,
-  price       INT           NOT NULL,
+  price       BIGINT        NOT NULL,
   category    VARCHAR(50)   NOT NULL,
-  image       VARCHAR(255)  DEFAULT 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400',
+  image       VARCHAR(255)  DEFAULT 'https://ih1.redbubble.net/image.4905811472.8675/st,extra_large,507x507-pad,600x600,f8f8f8.jpg',
   stock       INT           DEFAULT 0,
   created_at  DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS reviews (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
--- Products
 INSERT INTO products (name, description, price, category, image, stock) VALUES
 ('Arabica Flores',   'Kopi Arabica single origin dari Flores dengan cita rasa fruity dan sedikit asam yang menyegarkan.', 85000, 'Single Origin', 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400', 50),
 ('Robusta Lampung',  'Kopi Robusta pilihan dari Lampung, bold dan kuat cocok untuk espresso.', 65000, 'Single Origin', 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400', 75),

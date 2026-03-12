@@ -333,7 +333,6 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
-                                overflow: TextOverflow.ellipsis,
                               ),
                               Text(
                                 item['label'] as String,
@@ -341,7 +340,6 @@ class _HomePageState extends State<HomePage> {
                                   color: subTextColor,
                                   fontSize: 11,
                                 ),
-                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),
@@ -353,7 +351,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-
           const SizedBox(height: 24),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

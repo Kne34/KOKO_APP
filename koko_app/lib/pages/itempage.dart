@@ -90,161 +90,191 @@ class _ItemPageState extends State<ItemPage> {
           final cardColor = isDark ? const Color(0xFF2C1A12) : Colors.white;
           final textColor = isDark ? Colors.white : const Color(0xFF2C1A12);
 
-          return AlertDialog(
+          return Dialog(
             backgroundColor: cardColor,
-            title: Text(
-              isEdit ? 'Edit Produk' : 'Tambah Produk',
-              style: TextStyle(color: textColor),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  GestureDetector(
-                    onTap: () async {
-                      final picked = await ImagePicker().pickImage(
-                        source: ImageSource.gallery,
-                        imageQuality: 80,
-                      );
-                      if (picked != null) {
-                        setDialogState(() => imageFile = File(picked.path));
-                      }
-                    },
-                    child: Container(
-                      height: 120,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF8B4513).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: const Color(0xFF8B4513).withValues(alpha: 0.3),
-                        ),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.85,
+              padding: const EdgeInsets.all(20),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEdit ? 'Edit Produk' : 'Tambah Produk',
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                      child: imageFile != null
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.file(imageFile!, fit: BoxFit.cover),
-                            )
-                          : product?['image'] != null
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                product!['image'],
-                                fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => const Icon(
-                                  Icons.add_photo_alternate,
-                                  color: Color(0xFF8B4513),
-                                  size: 40,
-                                ),
-                              ),
-                            )
-                          : const Icon(
-                              Icons.add_photo_alternate,
-                              color: Color(0xFF8B4513),
-                              size: 40,
-                            ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  _dialogField(nameCtrl, 'Nama Produk', textColor, cardColor),
-                  _dialogField(
-                    descCtrl,
-                    'Deskripsi',
-                    textColor,
-                    cardColor,
-                    maxLines: 2,
-                  ),
-                  _dialogField(
-                    priceCtrl,
-                    'Harga',
-                    textColor,
-                    cardColor,
-                    type: TextInputType.number,
-                  ),
-                  _dialogField(categoryCtrl, 'Kategori', textColor, cardColor),
-                  _dialogField(
-                    stockCtrl,
-                    'Stok',
-                    textColor,
-                    cardColor,
-                    type: TextInputType.number,
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: const Text(
-                  'Batal',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8B4513),
-                  foregroundColor: Colors.white,
-                ),
-                onPressed: isLoading
-                    ? null
-                    : () async {
-                        setDialogState(() => isLoading = true);
-                        try {
-                          bool success;
-                          if (isEdit) {
-                            final (s, _) = await updateProduct(
-                              product['id'],
-                              nameCtrl.text.trim(),
-                              descCtrl.text.trim(),
-                              int.tryParse(priceCtrl.text),
-                              categoryCtrl.text.trim(),
-                              int.tryParse(stockCtrl.text),
-                              imageFile,
-                            );
-                            success = s;
-                          } else {
-                            final (s, _) = await addProduct(
-                              nameCtrl.text.trim(),
-                              descCtrl.text.trim(),
-                              int.tryParse(priceCtrl.text) ?? 0,
-                              categoryCtrl.text.trim(),
-                              int.tryParse(stockCtrl.text) ?? 0,
-                              imageFile,
-                            );
-                            success = s;
-                          }
-
-                          if (!mounted) return;
-                          Navigator.pop(ctx);
-                          if (success) {
-                            _fetchProducts();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  isEdit
-                                      ? 'Produk berhasil diupdate'
-                                      : 'Produk berhasil ditambahkan',
-                                ),
-                                backgroundColor: Colors.green,
-                              ),
-                            );
-                          }
-                        } finally {
-                          setDialogState(() => isLoading = false);
+                    const SizedBox(height: 16),
+                    GestureDetector(
+                      onTap: () async {
+                        final picked = await ImagePicker().pickImage(
+                          source: ImageSource.gallery,
+                          imageQuality: 80,
+                        );
+                        if (picked != null) {
+                          setDialogState(() => imageFile = File(picked.path));
                         }
                       },
-                child: isLoading
-                    ? const SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
-                          strokeWidth: 2,
+                      child: Container(
+                        height: 120,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF8B4513).withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: const Color(
+                              0xFF8B4513,
+                            ).withValues(alpha: 0.3),
+                          ),
                         ),
-                      )
-                    : Text(isEdit ? 'Simpan' : 'Tambah'),
+                        child: imageFile != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.file(
+                                  imageFile!,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : product?['image'] != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  product!['image'],
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (_, __, ___) => const Icon(
+                                    Icons.add_photo_alternate,
+                                    color: Color(0xFF8B4513),
+                                    size: 40,
+                                  ),
+                                ),
+                              )
+                            : const Icon(
+                                Icons.add_photo_alternate,
+                                color: Color(0xFF8B4513),
+                                size: 40,
+                              ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _dialogField(nameCtrl, 'Nama Produk', textColor, cardColor),
+                    _dialogField(
+                      descCtrl,
+                      'Deskripsi',
+                      textColor,
+                      cardColor,
+                      maxLines: 2,
+                    ),
+                    _dialogField(
+                      priceCtrl,
+                      'Harga',
+                      textColor,
+                      cardColor,
+                      type: TextInputType.number,
+                    ),
+                    _dialogField(
+                      categoryCtrl,
+                      'Kategori',
+                      textColor,
+                      cardColor,
+                    ),
+                    _dialogField(
+                      stockCtrl,
+                      'Stok',
+                      textColor,
+                      cardColor,
+                      type: TextInputType.number,
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(ctx),
+                          child: const Text(
+                            'Batal',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF8B4513),
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: isLoading
+                              ? null
+                              : () async {
+                                  setDialogState(() => isLoading = true);
+                                  try {
+                                    bool success;
+                                    if (isEdit) {
+                                      final (s, _) = await updateProduct(
+                                        product['id'],
+                                        nameCtrl.text.trim(),
+                                        descCtrl.text.trim(),
+                                        int.tryParse(priceCtrl.text),
+                                        categoryCtrl.text.trim(),
+                                        int.tryParse(stockCtrl.text),
+                                        imageFile,
+                                      );
+                                      success = s;
+                                    } else {
+                                      final (s, _) = await addProduct(
+                                        nameCtrl.text.trim(),
+                                        descCtrl.text.trim(),
+                                        int.tryParse(priceCtrl.text) ?? 0,
+                                        categoryCtrl.text.trim(),
+                                        int.tryParse(stockCtrl.text) ?? 0,
+                                        imageFile,
+                                      );
+                                      success = s;
+                                    }
+
+                                    if (!mounted) return;
+                                    Navigator.pop(ctx);
+                                    if (success) {
+                                      _fetchProducts();
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            isEdit
+                                                ? 'Produk berhasil diupdate'
+                                                : 'Produk berhasil ditambahkan',
+                                          ),
+                                          backgroundColor: Colors.green,
+                                        ),
+                                      );
+                                    }
+                                  } finally {
+                                    setDialogState(() => isLoading = false);
+                                  }
+                                },
+                          child: isLoading
+                              ? const SizedBox(
+                                  width: 16,
+                                  height: 16,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : Text(isEdit ? 'Simpan' : 'Tambah'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ],
+            ),
           );
         },
       ),

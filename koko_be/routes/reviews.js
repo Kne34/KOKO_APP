@@ -20,7 +20,7 @@ router.post('/', auth, (req, res) => {
     const productId = req.params.id;
     
     if (!username || !rating || !comment)
-        return err(res, 'Field username, rating, comment wajib diisi');
+        return err(res, 'User harus ada');
     if (rating < 1 || rating > 5)
         return err(res, 'Rating harus antara 1 sampai 5');
     
