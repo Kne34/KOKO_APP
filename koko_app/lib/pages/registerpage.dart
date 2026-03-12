@@ -168,6 +168,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Username',
+                        hintStyle: const TextStyle(color: Color(0xFF1A1A1A)),
                         prefixIcon: const Icon(
                           Icons.person,
                           color: Colors.grey,
@@ -198,6 +199,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Email',
+                        hintStyle: const TextStyle(color: Color(0xFF1A1A1A)),
                         prefixIcon: const Icon(Icons.email, color: Colors.grey),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -226,6 +228,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Password',
+                        hintStyle: const TextStyle(color: Color(0xFF1A1A1A)),
                         prefixIcon: const Icon(Icons.lock, color: Colors.grey),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -262,6 +265,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Konfirmasi Password',
+                        hintStyle: const TextStyle(color: Color(0xFF1A1A1A)),
                         prefixIcon: const Icon(
                           Icons.lock_outline,
                           color: Colors.grey,

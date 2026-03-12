@@ -151,6 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Email',
+                        hintStyle: const TextStyle(color: Color(0xFF1A1A1A)),
                         prefixIcon: const Icon(Icons.email, color: Colors.grey),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -179,6 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Password',
+                        hintStyle: const TextStyle(color: Color(0xFF1A1A1A)),
                         prefixIcon: const Icon(Icons.lock, color: Colors.grey),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),

@@ -53,11 +53,11 @@ class _ItemPageState extends State<ItemPage> {
 
   String _formatPrice(dynamic price) {
     final p = int.tryParse(price.toString()) ?? 0;
-    final str = p.toString().split('').reversed.join();
-    final result = RegExp(
-      r'.{1,3}',
-    ).allMatches(str).map((m) => m.group(0)).join('.');
-    return 'Rp ${result.split('').reversed.join()}';
+    final result = p.toString().replaceAllMapped(
+      RegExp(r'(\d)(?=(\d{3})+$)'),
+      (m) => '${m[1]}.',
+    );
+    return 'Rp $result';
   }
 
   void _showAddDialog() {
@@ -418,7 +418,7 @@ class _ItemPageState extends State<ItemPage> {
                             crossAxisCount: 2,
                             crossAxisSpacing: 12,
                             mainAxisSpacing: 12,
-                            childAspectRatio: 0.68,
+                            childAspectRatio: 0.8,
                           ),
                       itemCount: _products.length,
                       itemBuilder: (context, index) {
@@ -438,7 +438,7 @@ class _ItemPageState extends State<ItemPage> {
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.brown.withValues(alpha: 0.1),
+                                  color: Colors.brown.withValues(alpha: 0.5),
                                   blurRadius: 8,
                                   offset: const Offset(0, 2),
                                 ),
@@ -456,7 +456,7 @@ class _ItemPageState extends State<ItemPage> {
                                     height: 130,
                                     width: double.infinity,
                                     fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) => Container(
+                                    errorBuilder: (_, _, _) => Container(
                                       height: 130,
                                       color: const Color(
                                         0xFF8B4513,
