@@ -450,8 +450,6 @@ class _ItemPageState extends State<ItemPage> {
                                     ),
                                   ),
                                 ),
-
-                                // ── Nama & Harga ──
                                 Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: Column(
@@ -477,8 +475,6 @@ class _ItemPageState extends State<ItemPage> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-
-                                      // ✅ tombol edit & delete hanya untuk admin
                                       if (_isAdmin) ...[
                                         const SizedBox(height: 8),
                                         Row(

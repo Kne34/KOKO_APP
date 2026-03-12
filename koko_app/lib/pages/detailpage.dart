@@ -16,8 +16,6 @@ class _DetailPageState extends State<DetailPage>
   List<dynamic> _reviews = [];
   bool _isLoadingReviews = false;
   String _username = '';
-
-  // form review
   int _rating = 5;
   final _commentCtrl = TextEditingController();
   bool _isSubmitting = false;
@@ -151,7 +149,6 @@ class _DetailPageState extends State<DetailPage>
     );
   }
 
-  // ── Tab 1: Detail + Form Review ───────────────────────────────
   Widget _buildDetailTab(
     bool isDark,
     Color cardColor,
@@ -185,7 +182,6 @@ class _DetailPageState extends State<DetailPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ── Nama + Kategori ──
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -223,8 +219,6 @@ class _DetailPageState extends State<DetailPage>
                   ],
                 ),
                 const SizedBox(height: 8),
-
-                // ── Harga ──
                 Text(
                   _formatPrice(product['price']),
                   style: const TextStyle(
@@ -234,8 +228,6 @@ class _DetailPageState extends State<DetailPage>
                   ),
                 ),
                 const SizedBox(height: 4),
-
-                // ── Stok ──
                 Row(
                   children: [
                     Icon(
@@ -251,8 +243,6 @@ class _DetailPageState extends State<DetailPage>
                   ],
                 ),
                 const SizedBox(height: 16),
-
-                // ── Deskripsi ──
                 Text(
                   'Deskripsi',
                   style: TextStyle(
@@ -271,8 +261,6 @@ class _DetailPageState extends State<DetailPage>
                   ),
                 ),
                 const SizedBox(height: 24),
-
-                // ── Form Tambah Review ──
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(16),
@@ -304,8 +292,6 @@ class _DetailPageState extends State<DetailPage>
                         style: TextStyle(color: subTextColor, fontSize: 12),
                       ),
                       const SizedBox(height: 12),
-
-                      // ── Bintang Rating ──
                       Row(
                         children: List.generate(5, (i) {
                           return GestureDetector(
@@ -319,8 +305,6 @@ class _DetailPageState extends State<DetailPage>
                         }),
                       ),
                       const SizedBox(height: 12),
-
-                      // ── Kolom Komentar ──
                       TextField(
                         controller: _commentCtrl,
                         maxLines: 3,
@@ -343,8 +327,6 @@ class _DetailPageState extends State<DetailPage>
                         ),
                       ),
                       const SizedBox(height: 12),
-
-                      // ── Tombol Submit ──
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton.icon(
@@ -384,7 +366,6 @@ class _DetailPageState extends State<DetailPage>
     );
   }
 
-  // ── Tab 2: Review List ────────────────────────────────────────
   Widget _buildReviewTab(
     bool isDark,
     Color cardColor,
@@ -446,7 +427,6 @@ class _DetailPageState extends State<DetailPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ── Header: username + rating + delete ──
                 Row(
                   children: [
                     CircleAvatar(
@@ -473,7 +453,6 @@ class _DetailPageState extends State<DetailPage>
                         ),
                       ),
                     ),
-                    // ── Bintang ──
                     Row(
                       children: List.generate(5, (i) {
                         return Icon(
@@ -483,7 +462,6 @@ class _DetailPageState extends State<DetailPage>
                         );
                       }),
                     ),
-                    // ── Hapus (milik sendiri) ──
                     if (isOwn) ...[
                       const SizedBox(width: 6),
                       GestureDetector(
@@ -518,7 +496,6 @@ class _DetailPageState extends State<DetailPage>
                 ),
                 const SizedBox(height: 8),
 
-                // ── Komentar ──
                 Text(
                   review['comment'] ?? '-',
                   style: TextStyle(
@@ -529,7 +506,6 @@ class _DetailPageState extends State<DetailPage>
                 ),
                 const SizedBox(height: 6),
 
-                // ── Tanggal ──
                 Text(
                   review['created_at']?.toString().substring(0, 10) ?? '',
                   style: TextStyle(color: subTextColor, fontSize: 11),

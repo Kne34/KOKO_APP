@@ -172,7 +172,6 @@ class _HomePageState extends State<HomePage> {
         children: [
           _buildHomeBody(isDark, cardColor, textColor, subTextColor),
           const ItemPage(),
-          const Center(child: Text('Favorit')),
           const Center(child: Text('Profil')),
         ],
       ),
