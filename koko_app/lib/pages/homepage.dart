@@ -21,39 +21,37 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _loadUserData();
+    _loadUsername();
   }
 
-  Future<void> _loadUserData() async {
+  Future<void> _loadUsername() async {
     final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _username = prefs.getString('username') ?? 'User';
-    });
+    setState(() => _username = prefs.getString('username') ?? '');
   }
 
   final List<Map<String, String>> _carouselItems = [
     {
       'image':
-          'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800',
+          'https://drive.google.com/uc?export=view&id=1pTV3-NB7F_4pzDbmHSADJwx1Mlj5w3uR',
       'title': 'Premium Arabica',
       'subtitle': 'Single Origin from Flores',
     },
     {
       'image':
-          'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800',
+          'https://drive.google.com/uc?export=view&id=10NlIVgKO32QIRfYChtQExbr-9oovjzHU',
       'title': 'Promo Bulan Ini',
       'subtitle': 'Buy 2 Get 1 Free - All Espresso',
     },
     {
       'image':
-          'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800',
+          'https://drive.google.com/uc?export=view&id=1PE-sJ5X9jbDoXwj0ONdaFT2MSgtpvSjI',
       'title': 'Coffee Tasting Event',
       'subtitle': 'Sabtu, 15 Maret 2025 - Pukul 10.00',
     },
   ];
 
   final List<Map<String, dynamic>> _infographics = [
-    {'icon': Icons.coffee, 'value': '20+', 'label': 'Varian Kopi'},
+    {'icon': Icons.coffee, 'value': '10+', 'label': 'Varian Kopi'},
     {'icon': Icons.location_on, 'value': '5', 'label': 'Cabang'},
     {'icon': Icons.star, 'value': '4.9', 'label': 'Rating'},
     {'icon': Icons.people, 'value': '10K+', 'label': 'Member'},

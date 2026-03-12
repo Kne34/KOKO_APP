@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:http_parser/http_parser.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -251,7 +251,23 @@ Future<(bool, dynamic)> addProduct(
   request.fields['stock'] = stock.toString();
 
   if (imageFile != null) {
-    request.files.add(await MultipartFile.fromPath('image', imageFile.path));
+    final extension = imageFile.path.split('.').last.toLowerCase();
+    final mimeType =
+        {
+          'jpg': 'image/jpeg',
+          'jpeg': 'image/jpeg',
+          'png': 'image/png',
+          'webp': 'image/webp',
+        }[extension] ??
+        'image/jpeg';
+
+    request.files.add(
+      await MultipartFile.fromPath(
+        'image',
+        imageFile.path,
+        contentType: MediaType.parse(mimeType),
+      ),
+    );
   }
 
   var streamedResponse = await request.send();
@@ -287,7 +303,23 @@ Future<(bool, dynamic)> updateProduct(
   if (stock != null) request.fields['stock'] = stock.toString();
 
   if (imageFile != null) {
-    request.files.add(await MultipartFile.fromPath('image', imageFile.path));
+    final extension = imageFile.path.split('.').last.toLowerCase();
+    final mimeType =
+        {
+          'jpg': 'image/jpeg',
+          'jpeg': 'image/jpeg',
+          'png': 'image/png',
+          'webp': 'image/webp',
+        }[extension] ??
+        'image/jpeg';
+
+    request.files.add(
+      await MultipartFile.fromPath(
+        'image',
+        imageFile.path,
+        contentType: MediaType.parse(mimeType),
+      ),
+    );
   }
 
   var streamedResponse = await request.send();

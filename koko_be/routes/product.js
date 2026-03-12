@@ -54,7 +54,7 @@ router.post('/', auth, adminOnly, upload.single('image'), (req, res) => {
     
     if (!name || !description || !price || !category) return err(res, 'Field name, description, price, category wajib diisi');
     
-    const image = req.file ? `http://10.0.0.2:3000/uploads/${req.file.filename}` : null;
+    const image = req.file ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}` : null;
     
     db.query(
         'INSERT INTO products (name, description, price, category, image, stock) VALUES (?, ?, ?, ?, ?, ?)',
@@ -97,7 +97,7 @@ router.put('/:id', auth, adminOnly, upload.single('image'), (req, res) => {
     }
     if (req.file) {
         updates.push('image = ?');
-        values.push(`http://10.0.0.2:3000/uploads/${req.file.filename}`);
+        values.push(`${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`);
     }
     
     if (updates.length === 0) return err(res, 'Tidak ada field yang diupdate');

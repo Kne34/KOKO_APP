@@ -28,11 +28,9 @@ router.post("/register", (req, res) => {
             bcrypt.hash(password, 10, (hashErr, hashed) => {
                 if (hashErr) return err(res, "Server error", 500);
                 
-                const token = generateToken(32);
-                
                 db.query(
                     "INSERT INTO users (username, email, password, token) VALUES (?, ?, ?, ?)",
-                    [username, email, hashed, token],
+                    [username, email, hashed, null],
                     (insertErr, insertResult) => {
                         if (insertErr) return err(res, insertErr.message, 500);
                         return ok(
@@ -41,7 +39,6 @@ router.post("/register", (req, res) => {
                                 id: insertResult.insertId,
                                 username,
                                 email,
-                                token,
                             },
                             "Registrasi berhasil",
                             201,
