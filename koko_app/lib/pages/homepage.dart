@@ -162,10 +162,6 @@ class _HomePageState extends State<HomePage> {
             label: 'Produk',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: 'Favorit',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: 'Profil',
           ),
