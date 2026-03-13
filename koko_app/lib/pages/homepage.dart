@@ -33,19 +33,19 @@ class _HomePageState extends State<HomePage> {
   final List<Map<String, String>> _carouselItems = [
     {
       'image':
-          'https://drive.google.com/uc?export=view&id=1pTV3-NB7F_4pzDbmHSADJwx1Mlj5w3uR',
+          'https://drive.google.com/thumbnail?id=1pTV3-NB7F_4pzDbmHSADJwx1Mlj5w3uR&sz=w800',
       'title': 'Premium Arabica',
       'subtitle': 'Single Origin from Flores',
     },
     {
       'image':
-          'https://drive.google.com/uc?export=view&id=10NlIVgKO32QIRfYChtQExbr-9oovjzHU',
+          'https://drive.google.com/thumbnail?id=10NlIVgKO32QIRfYChtQExbr-9oovjzHU&sz=w800',
       'title': 'Promo Bulan Ini',
       'subtitle': 'Buy 2 Get 1 Free - All Espresso',
     },
     {
       'image':
-          'https://drive.google.com/uc?export=view&id=1PE-sJ5X9jbDoXwj0ONdaFT2MSgtpvSjI',
+          'https://drive.google.com/thumbnail?id=1PE-sJ5X9jbDoXwj0ONdaFT2MSgtpvSjI&sz=w800',
       'title': 'Coffee Tasting Event',
       'subtitle': 'Sabtu, 15 Maret 2025 - Pukul 10.00',
     },
