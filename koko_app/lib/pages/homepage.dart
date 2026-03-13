@@ -200,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                       item['image']!,
                       fit: BoxFit.cover,
                       width: double.infinity,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_, _, _) => Container(
                         color: const Color(0xFF8B4513),
                         child: const Icon(
                           Icons.coffee,

@@ -70,13 +70,15 @@ class _ItemPageState extends State<ItemPage> {
 
   void _showProductDialog({Map? product}) {
     final isEdit = product != null;
-    final nameCtrl = TextEditingController(text: product?['name']);
-    final descCtrl = TextEditingController(text: product?['description']);
-    final priceCtrl = TextEditingController(
+    final nameController = TextEditingController(text: product?['name']);
+    final descController = TextEditingController(text: product?['description']);
+    final priceController = TextEditingController(
       text: product?['price']?.toString(),
     );
-    final categoryCtrl = TextEditingController(text: product?['category']);
-    final stockCtrl = TextEditingController(
+    final categoryController = TextEditingController(
+      text: product?['category'],
+    );
+    final stockController = TextEditingController(
       text: product?['stock']?.toString(),
     );
     File? imageFile;
@@ -163,29 +165,34 @@ class _ItemPageState extends State<ItemPage> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    _dialogField(nameCtrl, 'Nama Produk', textColor, cardColor),
                     _dialogField(
-                      descCtrl,
+                      nameController,
+                      'Nama Produk',
+                      textColor,
+                      cardColor,
+                    ),
+                    _dialogField(
+                      descController,
                       'Deskripsi',
                       textColor,
                       cardColor,
                       maxLines: 2,
                     ),
                     _dialogField(
-                      priceCtrl,
+                      priceController,
                       'Harga',
                       textColor,
                       cardColor,
                       type: TextInputType.number,
                     ),
                     _dialogField(
-                      categoryCtrl,
+                      categoryController,
                       'Kategori',
                       textColor,
                       cardColor,
                     ),
                     _dialogField(
-                      stockCtrl,
+                      stockController,
                       'Stok',
                       textColor,
                       cardColor,
@@ -217,21 +224,21 @@ class _ItemPageState extends State<ItemPage> {
                                     if (isEdit) {
                                       final (s, _) = await updateProduct(
                                         product['id'],
-                                        nameCtrl.text.trim(),
-                                        descCtrl.text.trim(),
-                                        int.tryParse(priceCtrl.text),
-                                        categoryCtrl.text.trim(),
-                                        int.tryParse(stockCtrl.text),
+                                        nameController.text.trim(),
+                                        descController.text.trim(),
+                                        int.tryParse(priceController.text),
+                                        categoryController.text.trim(),
+                                        int.tryParse(stockController.text),
                                         imageFile,
                                       );
                                       success = s;
                                     } else {
                                       final (s, _) = await addProduct(
-                                        nameCtrl.text.trim(),
-                                        descCtrl.text.trim(),
-                                        int.tryParse(priceCtrl.text) ?? 0,
-                                        categoryCtrl.text.trim(),
-                                        int.tryParse(stockCtrl.text) ?? 0,
+                                        nameController.text.trim(),
+                                        descController.text.trim(),
+                                        int.tryParse(priceController.text) ?? 0,
+                                        categoryController.text.trim(),
+                                        int.tryParse(stockController.text) ?? 0,
                                         imageFile,
                                       );
                                       success = s;
