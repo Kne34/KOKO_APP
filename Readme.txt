@@ -1,0 +1,1 @@
+run the node admin.js in koko_be/database/

@@ -234,7 +234,7 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: cardColor,
         title: Text('Hapus Akun?', style: TextStyle(color: textColor)),
         content: Text(
-          'Akun kamu akan dihapus permanen dan tidak bisa dikembalikan.',
+          'Akun kamu akan dihapus permanen.',
           style: TextStyle(color: textColor),
         ),
         actions: [
@@ -267,35 +267,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget _editField(
-    TextEditingController ctrl,
-    String label,
-    Color textColor,
-    Color cardColor, {
-    IconData icon = Icons.edit,
-    TextInputType type = TextInputType.text,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: TextField(
-        controller: ctrl,
-        keyboardType: type,
-        style: TextStyle(color: textColor),
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: const TextStyle(color: Color(0xFF8B4513)),
-          prefixIcon: Icon(icon, color: const Color(0xFF8B4513)),
-          filled: true,
-          fillColor: cardColor,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: Color(0xFF8B4513)),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -321,7 +292,7 @@ class _ProfilePageState extends State<ProfilePage> {
               radius: 50,
               backgroundColor: const Color(0xFF8B4513).withValues(alpha: 0.15),
               child: Text(
-                _username.isNotEmpty ? _username[0].toUpperCase() : '?',
+                _username.isNotEmpty ? _username[0] : '?',
                 style: const TextStyle(
                   color: Color(0xFF8B4513),
                   fontSize: 40,
@@ -452,6 +423,35 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget _editField(
+    TextEditingController ctrl,
+    String label,
+    Color textColor,
+    Color cardColor, {
+    IconData icon = Icons.edit,
+    TextInputType type = TextInputType.text,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: TextField(
+        controller: ctrl,
+        keyboardType: type,
+        style: TextStyle(color: textColor),
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: const TextStyle(color: Color(0xFF8B4513)),
+          prefixIcon: Icon(icon, color: const Color(0xFF8B4513)),
+          filled: true,
+          fillColor: cardColor,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Color(0xFF8B4513)),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -110,8 +110,6 @@ class _HomePageState extends State<HomePage> {
             onSelected: (value) {
               if (value == 'toggle_theme') {
                 widget.koTheme(!isDark);
-              } else if (value == 'logout') {
-                _logout();
               }
             },
             itemBuilder: (context) => [
@@ -131,18 +129,38 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              PopupMenuItem(
-                value: 'logout',
-                child: Row(
-                  children: [
-                    const Icon(Icons.logout, color: Colors.red),
-                    const SizedBox(width: 8),
-                    Text('Logout', style: TextStyle(color: textColor)),
-                  ],
-                ),
-              ),
             ],
           ),
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.redAccent),
+            tooltip: 'Logout',
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Logout'),
+                  content: const Text('Apakah anda yakin ingin keluar?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Batal'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        _logout();
+                      },
+                      child: const Text(
+                        'Ya, Keluar',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          const SizedBox(width: 8),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
