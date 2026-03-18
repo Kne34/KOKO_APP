@@ -1,0 +1,488 @@
+{
+  "info": {
+    "_postman_id": "c64519a4-ab97-4d84-b64d-13bbbb249c4d",
+    "name": "KOKO_API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53126799",
+    "_collection_link": "https://go.postman.co/collection/53126799-c64519a4-ab97-4d84-b64d-13bbbb249c4d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"TestingAPI\",\r\n  \"email\": \"TestingAPI@koko.com\",\r\n  \"password\": \"TestingAPI123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"TestingAPI@koko.com\",\r\n  \"password\": \"TestingAPI123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"token\": \"CgSKF0mgzIYfPRnqnIOpa1s8BzZvjnks\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/logout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login as Admin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"admin@koko.com\",\r\n  \"password\": \"admin123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Product by ID (1)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Kopi Baru",
+              "type": "text",
+              "uuid": "9cd55bf8-16ae-4811-8ec2-a2b00224ea03"
+            },
+            {
+              "key": "description",
+              "value": "Deskripsi Kopi",
+              "type": "text",
+              "uuid": "76121d99-540c-4b5a-9aad-8b65f5241b05"
+            },
+            {
+              "key": "price",
+              "value": "75000",
+              "type": "text",
+              "uuid": "df3aff7a-9b96-4b23-9389-073676d4336c"
+            },
+            {
+              "key": "category",
+              "value": "Blend",
+              "type": "text",
+              "uuid": "73b1b992-b5cd-4686-ad9d-73d6d39d649c"
+            },
+            {
+              "key": "stock",
+              "value": "20",
+              "type": "text",
+              "uuid": "80fcf2ce-337e-4088-9dd6-08096c776dda"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "uuid": "db3aeccd-fea6-4588-8589-d3ca85aad9a1",
+              "src": "/C:/Users/ASUS TUF/Pictures/images.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Kopi yang sudah di update",
+              "type": "text",
+              "uuid": "33016e31-44cd-452d-8426-d91d102256f9"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/products/14",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "14"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/products/14",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "14"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Product Reviews",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/products/1/reviews",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "1",
+            "reviews"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Review",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"rating\": 5,\r\n    \"comment\": \"Kopi Arabica Flores-nya harum banget.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/products/1/reviews",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "1",
+            "reviews"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Review",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/products/1/reviews/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "1",
+            "reviews",
+            "6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get a User",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/users/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update a User's Theme",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "token",
+            "value": "dPFCk22W5wz5AX4OSevmSHQ7joevgYj1",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"theme\": \"dark\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/users/1/theme",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "users",
+            "1",
+            "theme"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

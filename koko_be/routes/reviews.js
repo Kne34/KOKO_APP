@@ -37,7 +37,7 @@ router.post('/', auth, (req, res) => {
                 (err3, insertResult) => {
                     if (err3) return err(res, err3.message, 500);
                     return ok(res, {
-                        id:         insertResult.insertId,
+                        id: insertResult.insertId,
                         product_id: parseInt(productId),
                         username,
                         rating,
