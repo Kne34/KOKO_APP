@@ -101,7 +101,7 @@ class _DetailPageState extends State<DetailPage> {
     final bgColor = isDark ? const Color(0xFF1A0E0A) : const Color(0xFFFFF8F4);
     final cardColor = isDark ? const Color(0xFF2C1A12) : Colors.white;
     final textColor = isDark ? Colors.white : const Color(0xFF2C1A12);
-    final subTextColor = isDark ? Colors.brown[200] : Colors.brown[400];
+    final subTextColor = isDark ? Colors.brown[200] : Colors.brown[600];
     final product = widget.product;
 
     return Scaffold(
