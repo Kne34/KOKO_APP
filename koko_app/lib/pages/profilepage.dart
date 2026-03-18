@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:koko_app/pages/loginpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -30,16 +29,6 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  Future<void> _logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-    if (!mounted) return;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => LoginPage(koTheme: widget.koTheme)),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -61,22 +50,14 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             const SizedBox(height: 16),
-
-            // Avatar
             CircleAvatar(
               radius: 50,
-              backgroundColor: const Color(0xFF8B4513).withValues(alpha: 0.15),
-              child: Text(
-                _username.isNotEmpty ? _username[0].toUpperCase() : '?',
-                style: const TextStyle(
-                  color: Color(0xFF8B4513),
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                ),
+              backgroundColor: Colors.transparent,
+              backgroundImage: NetworkImage(
+                'https://i.kym-cdn.com/editorials/icons/mobile/000/013/069/guy-pointing-at-himself.jpg',
               ),
             ),
             const SizedBox(height: 12),
-
             Text(
               _username,
               style: TextStyle(
@@ -88,8 +69,6 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 4),
             Text(_email, style: TextStyle(color: subTextColor, fontSize: 14)),
             const SizedBox(height: 32),
-
-            // Info card
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
@@ -122,27 +101,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     subTextColor,
                   ),
                 ],
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Logout button
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: _logout,
-                icon: const Icon(Icons.logout, color: Color(0xFF8B4513)),
-                label: const Text(
-                  'Keluar',
-                  style: TextStyle(color: Color(0xFF8B4513)),
-                ),
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  side: const BorderSide(color: Color(0xFF8B4513)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
               ),
             ),
           ],
