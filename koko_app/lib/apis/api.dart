@@ -181,55 +181,6 @@ Future<(bool, String)> deleteReview(int productId, int reviewId) async {
   return (false, data['message'].toString());
 }
 
-Future<(bool, String)> updateAccount(
-  String? username,
-  String? email,
-  String? password,
-) async {
-  final prefs = await SharedPreferences.getInstance();
-  final token = prefs.getString('token') ?? '';
-  final userId = prefs.getInt('userId') ?? 0;
-
-  var response = await put(
-    Uri.parse('$urlPath/api/users/$userId'),
-    headers: {'Content-Type': 'application/json', 'token': token},
-    body: jsonEncode({
-      'username': ?username,
-      'email': ?email,
-      'password': ?password,
-    }),
-  );
-
-  var data = jsonDecode(response.body);
-
-  if (response.statusCode == 200 && data['success'] == true) {
-    if (username != null) prefs.setString('username', username);
-    return (true, data['message'].toString());
-  }
-
-  return (false, data['message'].toString());
-}
-
-Future<(bool, String)> deleteAccount() async {
-  final prefs = await SharedPreferences.getInstance();
-  final token = prefs.getString('token') ?? '';
-  final userId = prefs.getInt('userId') ?? 0;
-
-  var response = await delete(
-    Uri.parse('$urlPath/api/users/$userId'),
-    headers: {'Content-Type': 'application/json', 'token': token},
-  );
-
-  var data = jsonDecode(response.body);
-
-  if (response.statusCode == 200 && data['success'] == true) {
-    await prefs.clear();
-    return (true, data['message'].toString());
-  }
-
-  return (false, data['message'].toString());
-}
-
 Future<(bool, dynamic)> addProduct(
   String name,
   String description,
